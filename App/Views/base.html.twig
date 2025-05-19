@@ -1,0 +1,31 @@
+{% block main %}
+<!DOCTYPE html>
+<html lang="de-DE">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        {% block headerIncludes %}
+        
+        {% endblock %}
+    </head>
+    <body>
+        <h1>Hello</h1>
+        <form method="POST">
+            <input type="text" name="username" placeholder="username">
+            <input type="password" name="password" placeholder="password">
+            <button type="submit">Send</button>
+        </form>
+
+ 
+
+        
+        
+
+        {% block footerIncludes %}
+        
+        {% endblock %}
+    </body>
+</html>
+{% endblock %}
