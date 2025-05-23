@@ -23,6 +23,8 @@ class Homes extends \Core\Controller{
         if(isset($_POST['username']) && isset($_POST['password'])) {
             if(Auths::authLogin($_POST['username'], $_POST['password'])) {
                 echo "logged in";
+
+                echo $_SESSION['user']->getId();
             }
         }
 

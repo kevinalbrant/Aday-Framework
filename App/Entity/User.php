@@ -12,14 +12,14 @@ class User extends \Core\Entity{
     private string $name;
     private string $surname;
     private string $username;
-    private string $password;
+    /*private string $password;*/
 
-    public function __construct(int $id, string $name, string $surname, string $username, string $password) {
-        $this->id = $id;
+    public function __construct(int $id, string $name, string $surname, string $username) {
+        parent::__construct($id);
         $this->name = $name;
         $this->surname = $surname;
         $this->username = $username;
-        $this->password = $password;
+        /*$this->password = $password;*/
     }
 
     public function getSurname():string {
@@ -46,7 +46,7 @@ class User extends \Core\Entity{
         $this->username = $username;
     }
 
-    public function getPassword():string {
+    /*public function getPassword():string {
         return $this->password;
-    }
+    }*/
 }

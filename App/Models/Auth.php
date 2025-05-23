@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Entity\User;
 use PDO;
 use PDOException;
 
@@ -24,11 +25,11 @@ class Auth extends \Core\Model{
         try {
             $db = static::getDB();
 
-            $stmt = $db->prepare('SELECT `user_ID` FROM `user` WHERE `username` = ? AND `password` = ?;');
+            $stmt = $db->prepare('SELECT `user_ID`, `name`, `surname`, `username` FROM `user` WHERE `username` = ? AND `password` = ?;');
             $stmt->execute([$username, $password]);
             $results = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            return $results;
+            return new User($results['user_ID'], $results['name'], $results['surname'], $results['username']);
             
         } catch (PDOException $e) {
             echo $e->getMessage();

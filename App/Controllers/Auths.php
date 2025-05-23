@@ -33,10 +33,12 @@ class Auths{
 
             $user = Auth::getUser($username, $password);
 
-            if ( isset($user['user_ID']) ) {
-                $_SESSION['user_ID'] = $user['user_ID'];
+            if ( isset($user) ) {
+                $_SESSION['userId'] = $user->getId();
 
-                Auth::deleteCookie($user['user_ID']);
+                Auth::deleteCookie($user->getId());
+
+                echo $_SESSION['user'];
 
                 static::setCookie($username, $password);
 
@@ -114,7 +116,18 @@ class Auths{
 
         setcookie('hashLogin', "", -3600, "/");
 
-        setcookie('hashLogin', $hash, time()+604800, '/', "", Config::DOMAIN_SSL);
+        setcookie(
+            'hashLogin',
+            $hash,
+            [
+                'expires'  => time() + 604800,
+                'path'     => '/',
+                'domain'   => Config::DOMAIN_SSL,
+                'secure'   => true,
+                'httponly' => true,
+                'samesite' => 'Strict'
+            ]);
+          
         
     }
 
